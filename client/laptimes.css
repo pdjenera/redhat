@@ -10,3 +10,7 @@
   margin: 0px;
   padding: 10px 15px 10px 15px;
 }
+
+.col.s8.inline.lapTimes{
+  overflow: scroll;
+}

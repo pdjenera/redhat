@@ -1,10 +1,6 @@
 import { Template } from 'meteor/templating';
 import './main.js';
 
-Template.lapInfo.events({
-
-});
-
 Template.lapInfo.helpers({
   lapTimes:function(){
     let lapTimes = Session.get('lapTimes');

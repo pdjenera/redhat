@@ -14,14 +14,18 @@ Template.main.helpers({
   },
 });
 
-Template.main.events({
-  'keypress input': function(event) {
-    if (event.keyCode == 13) {
-      alert('you hit enter');
-      event.stopPropagation();
-      return false;
+Template.main.onCreated(function(){
+  $(window).on("keydown",function(e) {
+    console.log(e);
+    console.log(e.keyCode);
+    if (e.keyCode == 32) {
+      recordLap();
     }
-  }
+    if (e.keyCode == 8) {
+      deleteLap();
+    }
+
+  })
 });
 
 Template.inputTime.events({
@@ -46,6 +50,12 @@ Template.inputTime.events({
       }
   }
 });
+
+function deleteLap() {
+  let laps = Session.get('lapTimes');
+  laps.pop();
+  Session.set('lapTimes', laps);
+}
 
 msToTime = function(duration) {
   let milliseconds = parseInt((duration%1000))

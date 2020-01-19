@@ -1,6 +1,6 @@
 <template name="lapInfo">
     <div class="row inline">
-      <div class="col s8 inline">
+      <div class="col s8 inline lapTimes">
           {{#each time in lapTimes}}
               <div class="col s2 lapTime">
                 <span class="timeText {{#if time.max}}max{{/if}}{{#if time.min}}min{{/if}}" >{{formatTime time}}</span>

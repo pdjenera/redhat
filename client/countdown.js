@@ -65,28 +65,30 @@ import './main.js';
     },
 
     'click #lap'(event, instance) {
-        let timeNow = new Date().getTime();
-        let laps = Session.get('lapTimes');
-        let duration = Session.get('countdown');
-        let currentTime = Session.get('currentTime');
-        let lapTime = {'currentTime':0, 'lapTime':0};
-
-        if(laps.length === 0){
-          lapTime.lapTime = duration - currentTime;
-          lapTime.currentTime = currentTime;
-          laps.push(lapTime);
-        } else {
-          let lastLapTime = laps[laps.length - 1].currentTime;
-          lapTime.lapTime = (lastLapTime - currentTime);
-          lapTime.currentTime = currentTime;
-          laps.push(lapTime);
-        }
-
-        Session.set('lapTimes',laps);
-
-
+        recordLap();
     }
   });
+
+  recordLap = function() {
+    let timeNow = new Date().getTime();
+    let laps = Session.get('lapTimes');
+    let duration = Session.get('countdown');
+    let currentTime = Session.get('currentTime');
+    let lapTime = {'currentTime':0, 'lapTime':0};
+
+    if(laps.length === 0){
+      lapTime.lapTime = duration - currentTime;
+      lapTime.currentTime = currentTime;
+      laps.push(lapTime);
+    } else {
+      let lastLapTime = laps[laps.length - 1].currentTime;
+      lapTime.lapTime = (lastLapTime - currentTime);
+      lapTime.currentTime = currentTime;
+      laps.push(lapTime);
+    }
+
+    Session.set('lapTimes',laps);
+  }
 
   function setCountdown() {
     let duration = Session.get('countdown');
