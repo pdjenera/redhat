@@ -1,0 +1,54 @@
+<head>
+  <title>redhat</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  <div class="row inline">
+    <div class="title">
+      <h3 class="titleText">The Timer App</h3>
+    </div>
+  </div>
+  {{#unless isCountdown}}
+    {{> inputTime}}
+  {{else}}
+    {{> lapInfo}}
+    {{> countdown}}
+  {{/unless}}
+</template>
+
+<template name="inputTime">
+  <div class="row inline">
+   <div class="col s4">
+     <div class="row inline">
+       <div class="col s4">
+         <div class=timeInput>
+           <input id="hrs" class="timeInputBox" type="number" min=0 max=24 value='00'>
+           <span class=timeText>Hours</span>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=timeInput>
+           <input id="min" class="timeInputBox" type="number" min=0 max=59 value='00'>
+           <span class=timeText>Minutes</span>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=timeInput>
+           <input id="sec" class="timeInputBox" type="number" min=0 max=59 value='00'>
+           <span class=timeText>Seconds</span>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>
+  <div class="row inline">
+    <div class="col s4 center">
+      <a id="startTimer" class="waves-effect waves-light btn-large">Start Countdown</a>
+    </div>
+  </div>
+</template>

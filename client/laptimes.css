@@ -1,0 +1,12 @@
+.timeText.max{
+  color: #ff0000;
+}
+
+.timeText.min{
+  color: #008000;
+}
+
+.col.s2.lapTime{
+  margin: 0px;
+  padding: 10px 15px 10px 15px;
+}

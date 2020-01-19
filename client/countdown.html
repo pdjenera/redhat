@@ -1,0 +1,63 @@
+<template name="countdown">
+  <div class="row inline">
+   <div class="col s4">
+     <div class="row inline">
+       <div class="col s4">
+         <div class=timeInput>
+           <div class="coundownNumber">{{getTime.hours}}</div>
+           <span class=timeText>Hours</span>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=timeInput>
+           <div class="coundownNumber">{{getTime.minutes}}</div>
+           <span class=timeText>Minutes</span>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=timeInput>
+           <div class="coundownNumber">{{getTime.seconds}}</div>
+           <span class=timeText>Seconds</span>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=timeInput>
+           <div class="coundownNumber">{{getTime.milliseconds}}</div>
+           <span class=timeText>Milliseconds</span>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>
+  {{> controls}}
+</template>
+
+<template name="controls">
+  <div class="row inline">
+   <div class="col s4">
+     <div class="row inline">
+       <div class="col s4">
+         <div class=buttonContianer>
+           <div id="stop" title="stop" class="controlButton"><i class="material-icons">stop</i></div>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=buttonContianer>
+           <div id="playpause" title="pause" class="controlButton">
+              {{#unless playOrPause}}
+                <i class="material-icons">pause</i>
+              {{else}}
+                <i class="material-icons">play_arrow</i>
+              {{/unless}}
+           </div>
+         </div>
+       </div>
+       <div class="col s4">
+         <div class=buttonContianer>
+           <div id="lap" title="lap" class="controlButton"><i class="material-icons">replay</i></div>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</template>
