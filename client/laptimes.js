@@ -2,24 +2,24 @@ import { Template } from 'meteor/templating';
 import './main.js';
 
 Template.lapInfo.helpers({
-  lapTimes:function(){
+  lapTimes(){
     let lapTimes = Session.get('lapTimes');
-    let maxIndex = indexOfMax(lapTimes);
-    let minIndex = indexOfMin(lapTimes);
-    lapTimes[maxIndex].max = true;
-    lapTimes[minIndex].min = true;
+    if(lapTimes.length > 0){
+      let maxIndex = indexOfMax(lapTimes);
+      let minIndex = indexOfMin(lapTimes);
+      lapTimes[maxIndex].max = true;
+      lapTimes[minIndex].min = true;
+    }
 
     return lapTimes;
   },
 
-  formatTime: function(time){
-    let timeObject = msToTime(time.lapTime);
-    let formattedTime = timeObject.hours + ":" + timeObject.minutes + ":" + timeObject.seconds + ":" + timeObject.milliseconds;
-    return formattedTime;
+  formatTime(time){
+    return formatTime(time);
   }
 });
 
-function indexOfMax(arr) {
+indexOfMax = function (arr) {
   if (arr.length === 0) {
       return -1;
   }
@@ -35,9 +35,9 @@ function indexOfMax(arr) {
   }
 
   return maxIndex;
-}
+};
 
-function indexOfMin(arr) {
+indexOfMin = function(arr) {
   if (arr.length === 0) {
       return -1;
   }
@@ -53,4 +53,4 @@ function indexOfMin(arr) {
   }
 
   return minIndex;
-}
+};

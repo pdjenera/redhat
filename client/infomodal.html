@@ -1,0 +1,56 @@
+<template name="infomodal">
+  <div id="info-modal" class="modal confirm">
+      <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <div class="confirm-title">Timer Results</div>
+                <div class="row inline">
+                    <div class="col s6">
+                      <div class="confirm-title">Lap Results</div>
+                      <div class="lapresults">
+                        {{#each time in lapTimes}}
+                            <div class="col s2 lapTime">
+                              <span class="timeText {{#if time.max}}max{{/if}}{{#if time.min}}min{{/if}}" >{{formatTime time.lapTime}}</span>
+                            </div>
+                        {{/each}}
+                      </div>
+                    </div>
+                    <div class="col s6">
+                      <div class="row">
+                        <div class="col s12">
+                          <div class="confirm-title">Start Time </div>
+                          <span class="timeText" >{{getStartTime}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <div class="confirm-title">End Time</div>
+                          <span class="timeText" >{{getEndTime}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <div class="confirm-title">Duration</div>
+                          <span class="timeText" >{{getDuration}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <div class="confirm-title">Total Time Paused</div>
+                          <span class="timeText" >{{getPauseTime}}</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="confirmButtonContianer">
+              <a id="ok-button" class="getstarted .modal-close btn-large kubume-button confirm ok">Ok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

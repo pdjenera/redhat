@@ -36,6 +36,8 @@ import './main.js';
     'click #stop'(event, instance) {
       let interval = Session.get('interval');
       Meteor.clearInterval(interval);
+      $('#info-modal').modal('open');
+      Session.set('stopTime', new Date().getTime());
       Session.set('isCountdown', false);
       console.log(instance);
     },
@@ -74,15 +76,15 @@ import './main.js';
     let laps = Session.get('lapTimes');
     let duration = Session.get('countdown');
     let currentTime = Session.get('currentTime');
+    let startTime = Session.get('setTime');
     let lapTime = {'currentTime':0, 'lapTime':0};
 
     if(laps.length === 0){
-      lapTime.lapTime = duration - currentTime;
+      lapTime.lapTime = startTime - currentTime;
       lapTime.currentTime = currentTime;
       laps.push(lapTime);
     } else {
-      let lastLapTime = laps[laps.length - 1].currentTime;
-      lapTime.lapTime = (lastLapTime - currentTime);
+      lapTime.lapTime = Math.abs((laps.reduce((a, b) => a + (b['lapTime'] || 0), 0) + currentTime) -  startTime);
       lapTime.currentTime = currentTime;
       laps.push(lapTime);
     }
@@ -94,7 +96,7 @@ import './main.js';
     let duration = Session.get('countdown');
     let pauseTime = Session.get('pauseTime');
     let timeNow = new Date().getTime();
-    let pauseDifference = timeNow - pauseTime
+    let pauseDifference = timeNow - pauseTime;
     let totalPauseTime = Session.get('pauseTimeTotal');
     Session.set('pauseTimeTotal', totalPauseTime + pauseDifference);
     Session.set('countdown', duration + pauseDifference);
