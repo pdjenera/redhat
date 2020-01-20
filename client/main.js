@@ -19,8 +19,6 @@ Template.main.helpers({
 
 Template.main.onCreated(function(){
   $(window).on("keydown",function(e) {
-    console.log(e);
-    console.log(e.keyCode);
     if (e.keyCode == 32) {
       recordLap();
     }
@@ -28,7 +26,19 @@ Template.main.onCreated(function(){
       deleteLap();
     }
   });
-  Session.set('lapTimes', []);
+
+  Session.set("setTime", localStorage.getItem("setTime"));
+  Session.set("countdown", localStorage.getItem("countdown"));
+  Session.set("startTime", JSON.parse(localStorage.getItem("startTime")));
+  Session.set("isCountdown", JSON.parse(localStorage.getItem("isCountdown")));
+  Session.set("play", localStorage.getItem("play"));
+  Session.set('pauseTimeTotal', localStorage.getItem("pauseTimeTotal"));
+  Session.set('currentTime', localStorage.getItem("currentTime"));
+  Session.set('pauseTime', localStorage.getItem("pauseTime"));
+
+  let laps = (localStorage.getItem("lapTimes")) ? JSON.parse(localStorage.getItem("lapTimes")) : [];
+  Session.set("lapTimes", JSON.stringify(laps));
+
 });
 
 Template.main.onRendered(function () {
@@ -44,10 +54,18 @@ Template.inputTime.events({
       let milliseconds = convertTimeToMilli(hours, minutes, seconds);
 
       if(milliseconds > 0 ){
+
+        localStorage.setItem('setTime', milliseconds);
+        localStorage.setItem('countdown', milliseconds);
+        localStorage.setItem('startTime', new Date().getTime());
+        localStorage.setItem('isCountdown', true);
+        localStorage.setItem('lapTimes', JSON.stringify([]));
+
         Session.set('setTime', milliseconds);
         Session.set('countdown', milliseconds);
         Session.set('startTime', new Date().getTime());
         Session.set('isCountdown', true);
+        Session.set("lapTimes", JSON.stringify([]));
       } else {
         Bert.alert({
           message: "Can't start until the countdown is set!",
@@ -60,9 +78,9 @@ Template.inputTime.events({
 });
 
 function deleteLap() {
-  let laps = Session.get('lapTimes');
+  let laps = getLaps();
   laps.pop();
-  Session.set('lapTimes', laps);
+  Session.set('lapTimes', JSON.stringify(laps));
 }
 
 msToTime = function(duration) {
@@ -89,11 +107,13 @@ formatTime = function (time) {
 formatAMPM = function (date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
   var ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
+  seconds = seconds < 10 ? '0'+seconds : seconds;
+  var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
   return strTime;
 };
 

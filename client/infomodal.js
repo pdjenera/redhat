@@ -1,12 +1,14 @@
 Template.infomodal.events({
   "click #ok-button":function(){
     $('#info-modal').modal('close');
+    localStorage.setItem('lapTimes',[]);
+    Session.set('lapTimes',JSON.stringify([]));
   }
 });
 
 Template.infomodal.helpers({
   lapTimes(){
-    let lapTimes = Session.get('lapTimes');
+    let lapTimes = getLaps();
     if(lapTimes.length > 0){
       let maxIndex = indexOfMax(lapTimes);
       let minIndex = indexOfMin(lapTimes);

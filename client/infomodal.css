@@ -54,3 +54,8 @@
     background-color: #F05A67;
     color: #FFFFFF;
 }
+
+.lapresults{
+  max-height: 250px;
+  overflow: scroll;
+}

@@ -3,7 +3,7 @@ import './main.js';
 
 Template.lapInfo.helpers({
   lapTimes(){
-    let lapTimes = Session.get('lapTimes');
+    let lapTimes = getLaps();
     if(lapTimes.length > 0){
       let maxIndex = indexOfMax(lapTimes);
       let minIndex = indexOfMin(lapTimes);
