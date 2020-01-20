@@ -9,7 +9,7 @@ This app is a simple countdown timer. As a user you can set the time you wish to
 
 * Laps - The user can use the laps button beside the play / pause control to record lap times as the countdown timer is running. Your fastest lap is highlighted with a green text color, while your slowest lap is highlighted in red.
 
-NOTE: All values when the timer is running are cached locally and will not be reset untile you stop the timer.
+NOTE: All values when the timer is running are cached locally and will not be reset until you stop the timer.
 
 ### Setup
 
