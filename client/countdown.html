@@ -43,7 +43,7 @@
        </div>
        <div class="col s4">
          <div class=buttonContianer>
-           <div id="playpause" title="pause" class="controlButton">
+           <div id="playpause" title="{{#unless playOrPause}}pause{{else}}play{{/unless}}" class="controlButton">
               {{#unless playOrPause}}
                 <i class="material-icons">pause</i>
               {{else}}
