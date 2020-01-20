@@ -15,7 +15,9 @@ NOTE: When the timer is actively running, all values are cached locally and will
 
 First to run this project you will need to have Node.js and npm installed. If you don't have those the download is available here https://nodejs.org/en/
 
-Next clone the repository https://github.com/pdjenera/redhat to a directory of your choice.
+Next clone the repository to a directory of your choice.
+
+``` git clone https://github.com/pdjenera/redhat.git```
 
 Lastly navigate to redhat-master directory the you just cloned and install meteor with the following command
 
