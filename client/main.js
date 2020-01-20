@@ -11,6 +11,8 @@ import './laptimes.js';
 import './infomodal.html';
 import './infomodal.js';
 
+import './materialize.js';
+
 Template.main.helpers({
   isCountdown() {
     return Session.get('isCountdown');
@@ -96,7 +98,7 @@ msToTime = function(duration) {
   let time = {'hours':hours, 'minutes': minutes, 'seconds': seconds, 'milliseconds': milliseconds}
 
   return time
-}
+};
 
 formatTime = function (time) {
   let timeObject = msToTime(time);
